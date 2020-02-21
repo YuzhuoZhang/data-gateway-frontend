@@ -1,14 +1,16 @@
 import React from 'react'
-import { Layout, Menu, Breadcrumb, Icon,Avatar, Empty } from 'antd'
-import { NavLink,Route,Switch, Redirect } from 'react-router-dom'
+import { Layout, Menu, Breadcrumb, Icon,Avatar } from 'antd'
+import { NavLink,Route,Switch,Redirect } from 'react-router-dom'
 import 'antd/dist/antd.css'
+
 import avator from '../assets/images/avator.jpg'
 import DataChanel from '../components/dg-manage/data-chanel'
+import storageUtils from '../utils/storageUtils'
 
 const { Header, Content, Footer, Sider } = Layout
 const { SubMenu } = Menu
 
-export default class SiderDemo extends React.Component {
+export default class Home extends React.Component {
 
   state = {
     collapsed: false,
@@ -84,6 +86,12 @@ export default class SiderDemo extends React.Component {
   }
 
   render() {
+    const user = storageUtils.user
+    // 如果内存没有存储user ==> 当前没有登陆
+    if(!user || !user._id) {
+      // 自动跳转到登陆(在render()中)
+      return <Redirect to='/login'/>
+    }
     return (
       <Layout style={{ minHeight: '100vh' }}>
         <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
@@ -112,18 +120,21 @@ export default class SiderDemo extends React.Component {
         </Sider>
         <Layout>
           <Header style={{ background: '#fff', padding: 0 }}>
-            <Breadcrumb style={{ margin: '16px 0' }}>
+            <Breadcrumb style={{ margin: '16px 16px' }}>
+              <Breadcrumb.Item><Icon type="home" /></Breadcrumb.Item>
               <Breadcrumb.Item>网关查询</Breadcrumb.Item>
               <Breadcrumb.Item>索引查询</Breadcrumb.Item>
             </Breadcrumb>
           </Header>
           <Content style={{ margin: '0 16px' }}>
-            hello
             <div>
               <Switch>
-                <Route path='/home/dgm/dcm' component={<DataChanel />}/>
+                <Route path='/home/dgm/dcm' component={DataChanel}/>
                 {/* <Redirect to='/home/dgm/dcm'/> */}
               </Switch>
+              <div>
+                
+              </div>
             </div>
             
           </Content>
