@@ -1,6 +1,8 @@
 import React,{Component} from 'react'
 import {Input,Form,Icon,Button} from 'antd'
 
+import './start.css'
+
 function hasErrors(fieldsError) {
     return Object.keys(fieldsError).some(field => fieldsError[field]);
 }
@@ -32,7 +34,7 @@ class LoginForm extends Component{
         const passwordError = isFieldTouched('password')&&getFieldError('password')
 
         return (
-            <Form onSubmit={this.handleSubmit}>
+            <Form className='login-form' onSubmit={this.handleSubmit}>
                 <Form.Item validateStatus={usernameError?'error':''} help={usernameError||''}>
                     {
                         getFieldDecorator('username',{
@@ -58,7 +60,9 @@ class LoginForm extends Component{
                     }
                 </Form.Item>
                 <Form.Item>
-                    <Button type='primary' htmlType='submit' disabled={hasErrors(getFieldsError())}>
+                    <Button type='primary' 
+                    style={{width:'100%'}}
+                    htmlType='submit' disabled={hasErrors(getFieldsError())}>
                         登录
                     </Button>
                 </Form.Item>

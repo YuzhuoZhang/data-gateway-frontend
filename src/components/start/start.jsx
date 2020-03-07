@@ -1,13 +1,18 @@
 import React,{Component} from 'react'
 
 import {WrappedLoginForm} from './login-form'
-import backgroundImage from '../../assets/images/background.jpg'
 
-export default class Start extends Component{
+import './start.css'
+
+export class Start extends Component{
     render(){
         return (
-            <div style={{backgroundImage}}>
-                <WrappedLoginForm />
+            <div className='welcome'>
+                <div className='login'>
+                    <div className='logo'>Data&nbsp;&nbsp;Gateway</div>
+                    <WrappedLoginForm className='wrapped-login-form'/>
+                </div>
+                
             </div>
             
         )

@@ -1,0 +1,20 @@
+.welcome{
+    background: linear-gradient(to right, #4b6cb7, #182848);
+    background-size: 100% 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+    
+}
+.login{
+    position: relative;
+    margin: 0 auto;
+}
+.login-form{
+    max-width: 350px;
+}
+.wrapped-login-form{
+    background-color: rebeccapurple;
+}
