@@ -1,9 +1,10 @@
+
 .home-header{
-    height: 20%;
+    height: 20vh;
 }
-.home-main{
-    height: 70%;
+.home-content{
+    height: 70vh;
 }
 .home-footer{
-    height: 10%;
+    height: 10vh;
 }

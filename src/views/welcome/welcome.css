@@ -13,5 +13,7 @@
 }
 .welcome-title{
     text-align: center;
-    font: bolder;
+    font-style: italic;
+    font-weight: bold;
+    color: #4b6cb7;
 }
