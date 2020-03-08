@@ -5,13 +5,16 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import {login} from '../../../api/apis'
 
 import './login.css'
+import { Redirect } from 'react-router-dom'
 
 export default class LoginForm extends React.Component{
   
-  onFinish = async values => {
-    console.log('接受的参数为:',values);
-    const response = await login(values.username,values.password)
-    console.log("返回结果为:",response)
+  onFinish = (values,event) => {
+    event.preventDefault()
+    console.log('接受的参数为:',values)
+    // const response = await login(values.username,values.password)
+    // console.log("返回结果为:",response)
+    return <Redirect to='/' />
     
   }
 

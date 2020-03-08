@@ -6,7 +6,12 @@
     justify-content: center;
     flex-flow: column nowrap;
 }
-.welcome-title{
+.welcome-login{
     margin: 0 auto;
+    width: 500px;
+    
+}
+.welcome-title{
+    text-align: center;
     font: bolder;
 }
