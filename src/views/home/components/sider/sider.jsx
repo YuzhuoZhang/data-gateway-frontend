@@ -18,9 +18,11 @@ export default class FuncMenu extends React.Component {
         this.setState({ collapsed })
     }
     // 渲染
+
+
     render() {
 
-        const {menus} = this.props
+        const { menus } = this.props
         return (
             <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
 
@@ -30,7 +32,7 @@ export default class FuncMenu extends React.Component {
                             <SubMenu key={i['url']} title={<span>{i['icon']}<span>{i['title']}</span></span>}>
                                 {i['subMenu'].map(sm => (
                                     <Item key={sm['url']}>
-                                        <Link to={sm['url']}>
+                                        <Link to={sm['url']} >
                                             {sm['title']}
                                         </Link>
                                     </Item>

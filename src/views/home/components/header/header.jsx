@@ -1,29 +1,29 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import {Layout, Menu, Breadcrumb, Dropdown, Avatar} from 'antd'
+import { Layout, Menu, Breadcrumb, Dropdown, Avatar } from 'antd'
 import { HomeOutlined } from '@ant-design/icons'
 
 import './header.css'
 
-const {Header} = Layout
-const {Item} = Menu
+const { Header } = Layout
+const { Item } = Menu
 
 const breadcrumbNameMap = {
-    '/dgs': '网关查询',
-    '/dgs/is': '索引查询',
-    '/dgs/dss': '数据源查询',
-    '/dgm': '网关管理',
-    '/dgm/dcm': '数据通道管理',
-    '/dgm/dtm': '数据类型转换维护',
-    '/dgm/rcm': '行列置换预案维护',
-    '/asp': '自动服务计划',
-    '/asp/aspm': '自动服务参数维护',
-    '/asp/em': '异常报警短信设置',
-    '/asp/spm': '服务计划管理',
-    '/asp/log': '自动服务时间日志'
+    '/dgs': ['网关查询'],
+    '/dgs/is': ['网关查询', '索引查询'],
+    '/dgs/dss': ['网关查询', '数据源查询'],
+    '/dgm': ['网关管理'],
+    '/dgm/dcm': ['网关管理', '数据通道管理'],
+    '/dgm/dtm': ['网关管理', '数据类型转换维护'],
+    '/dgm/rcm': ['网关管理', '行列置换预案维护'],
+    '/asp': ['自动服务计划'],
+    '/asp/aspm': ['自动服务计划', '自动服务参数维护'],
+    '/asp/em': ['自动服务计划', '异常报警短信设置'],
+    '/asp/spm': ['自动服务计划', '服务计划管理'],
+    '/asp/log': ['自动服务计划', '自动服务时间日志']
 }
 
-function logout(){
+function logout() {
     sessionStorage.removeItem('user_id')
     sessionStorage.removeItem('user_name')
 }
@@ -37,39 +37,32 @@ const userMenu = (
     </Menu>
 )
 
-const breadcrumbItems = withRouter(props => {
-    const { location } = props
-    debugger
-    const pathSnippets = location.pathname.split('/').filter(i => i)
-    const extraBreadcrumbItems = pathSnippets.map((_, index) => {
-      const url = `/${pathSnippets.slice(0, index + 1).join('/')}`
-      return (
-        <Breadcrumb.Item key={url}>
-          {breadcrumbNameMap[url]}
-        </Breadcrumb.Item>
-      )
-    })
-    const breadcrumbItems = [
-        <Breadcrumb.Item href='/home'>
-          <HomeOutlined />
-        </Breadcrumb.Item>
-      ].concat(extraBreadcrumbItems)
-
-    return breadcrumbItems
-})
-
 export default class HomeHeader extends React.Component {
 
-    state={
-        breadcrumbItems
-    }
-
     render() {
+        //从父组件中拿到当前的url
+        const { url } = this.props
+        //得到面包屑的数组--这个方案真独特，不知道有没有第二个人这么写
+        const breadcrumbItems = breadcrumbNameMap[url]
+
         return (
             <Header className='home-header'>
 
                 <Breadcrumb>
-                    {this.state.breadcrumbItems}
+                    <Breadcrumb.Item href='/home'>
+                        <HomeOutlined />
+                    </Breadcrumb.Item>
+                    {
+                        (url, breadcrumbItems) => {
+                            if (!url) {
+                                breadcrumbItems.map(item => (
+                                    <Breadcrumb.Item >
+                                        {item}
+                                    </Breadcrumb.Item>
+                                ))
+                            }
+                        }
+                    }
                 </Breadcrumb>
 
                 <Dropdown overlay={userMenu} placement='bottomCenter'>

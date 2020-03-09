@@ -7,11 +7,13 @@ import {
     EditOutlined
 } from '@ant-design/icons'
 
+
 import './home.css'
 import HomeHeader from './components/header/header'
 import FuncMenu from './components/sider/sider'
 import DataSourceMange from './components/main/dgm/dsm/dsm'
 import DataChanelMange from './components/main/dgm/dcm/dcm'
+import Start from './components/homepage'
 
 const { Content, Footer } = Layout
 /**
@@ -20,6 +22,11 @@ const { Content, Footer } = Layout
  * 如果拿不到证明没有登陆，则直接跳转到登陆界面
  */
 export default class Home extends React.Component {
+
+
+    state={
+        url:''
+    }
 
     render() {
 
@@ -93,22 +100,24 @@ export default class Home extends React.Component {
             }
         ]
 
+        const {url} = this.state
+
         return (
             <Layout>
                 {/*sider 功能列表*/}
-                <FuncMenu menus={menus}/>
+                <FuncMenu menus={menus} />
                 {/* 主体界面 */}
                 <Layout className='home-main'>
                     {/* 主体界面的头部 */}
-                    <HomeHeader />
+                    <HomeHeader url={url} />
                     {/* 主体界面的主体部分 */}
                     <Content className='home-content'>
                         {/* 用一张卡片承载主体部分 */}
                         <Card className='card' hoverable={false}>
                             {/* 主体部分的路由 */}
                             <Switch>
-                                {/* <Route path='/home' component={}/>
-                                <Route path='/dgs/is' component={}/>
+                                <Route path='/home' component={Start}/>
+                                {/* <Route path='/dgs/is' component={}/>
                                 <Route path='/dgs/dss' component={}/> */}
                                 <Route path='/dgm/dsm' component={DataSourceMange}/>
                                 <Route path='/dgm/dcm' component={DataChanelMange}/>
@@ -117,8 +126,8 @@ export default class Home extends React.Component {
                                 <Route path='/asp/aspm' component={}/>
                                 <Route path='/asp/em' component={}/>
                                 <Route path='/asp/spm' component={}/>
-                                <Route path='/asp/asl' component={}/>
-                                <Redirect to='/home'/> */}
+                                <Route path='/asp/asl' component={}/> */}
+                                <Redirect to='/home'/>
                             </Switch>
                         </Card>
                     </Content>

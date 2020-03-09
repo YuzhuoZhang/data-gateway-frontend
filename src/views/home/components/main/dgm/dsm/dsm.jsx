@@ -1,6 +1,6 @@
 import React from 'react'
-import { Input, Button, Table, Tag } from 'antd'
-import { PlusOutlined, DeleteOutlined } from '@ant-design/icons'
+import { Input, Button, Table, Tag, Modal } from 'antd'
+import { PlusOutlined, DeleteOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 
 import './dsm.css'
 import MyTable from '../../table'
@@ -122,30 +122,47 @@ const columns = [
 export default class DataSourceMange extends React.Component{
 
     state={
-        selectedRowKeys: []
+        selectedRowKeys:[]
+    }
+
+    onSelectChange=(selectedRowKeys)=>{
+        this.setState({selectedRowKeys})
+    }
+
+    deleteItems=()=>{
+        Modal.confirm({
+            title:'确定要删除这'+this.state.selectedRowKeys.length+'条数据源吗',
+            icon: <ExclamationCircleOutlined />,
+            cancelText:'取消',
+            onCancel:()=>console.log('cancel'),
+            okType:'danger',
+            okText:'确认',
+            onOk:()=>this.setState({selectedRowKeys:[]})
+        })
     }
 
     render(){
 
-        const {selectedRowKeys} = this.state
-
-        const rowSelection={
-            selectedRowKeys,
-            onChange: this.onSelectChange
-        }
+        const isDeleteAbled = this.state.selectedRowKeys.length>0
 
         return (
             <div className='dsm'>
                 {/* 数据源管理的头部 */}
                 <div className='dsm-header'>
-                    <Button className='dsm-header-add' type='primary' icon={<PlusOutlined />}>新建数据源</Button>
-                    <Button className='dsm-header-delete' type='danger' disabled={true} icon={<DeleteOutlined />}>删除数据源</Button>
-                    <Search className='dsm-header-search' placeholder='搜索数据源' onSearch={value=>console.log(value)} enterButton/>
+                    <Button className='dsm-header-add' type='primary' icon={<PlusOutlined />}>
+                        新建数据源
+                    </Button>
+                    <Button className='dsm-header-delete' 
+                    type='danger' disabled={!isDeleteAbled} icon={<DeleteOutlined />}
+                    onClick={this.deleteItems}>
+                        {'删除数据源('+this.state.selectedRowKeys.length+')'}
+                    </Button>
+                    <Search className='dsm-header-search' placeholder='搜索数据库名称' onSearch={value=>console.log(value)} enterButton/>
                 </div>
 
                 {/* 数据源管理的主体部分--表格 */}
                 <div className='dsm-main'>
-                    <MyTable rowSelection={rowSelection} columns={columns} dataSource={dataSource}/>
+                    <MyTable onSelectChange={this.onSelectChange} columns={columns} dataSource={dataSource}/>
                 </div>
             </div>
         )
