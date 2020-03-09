@@ -2,11 +2,14 @@ import React from 'react'
 import { Form, Input, Button } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 
-import {login} from '../../../api/apis'
+//import {login} from '../../../api/apis'
 
 import './login.css'
-import { Redirect, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
+/**
+ * 登陆表单
+ */
 class LoginForm extends React.Component{
   
   onFinish = values => {

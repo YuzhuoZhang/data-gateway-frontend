@@ -1,13 +1,13 @@
 
 .home-content{
     margin: 2vh 2vh 2vh 2vh;
-    height: 80vh;
+    height: 82vh;
 }
 .card{
     width: 100%;
     height: 100%;
 }
 .home-footer{
-    height: 8vh;
-    background-color: rebeccapurple;
+    height: 7vh;
+    background: linear-gradient(to right, #5f2c82, #49a09d);
 }

@@ -1,8 +1,8 @@
 .home-header{
     display: flex;
     align-items: center;
-    height: 8vh;
-    background-color: rebeccapurple;
+    height: 7vh;
+    background: linear-gradient(to right, #5f2c82, #49a09d);
 }
 .avator{
     margin-left: auto;

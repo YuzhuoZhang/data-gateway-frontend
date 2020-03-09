@@ -1,0 +1,17 @@
+.dsm-header{
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.dsm-header-search{
+    width: 30vw;
+    margin-left: auto;
+}
+
+.dsm-header-delete{
+    margin-left: 1.5vw;
+}
+
+.dsm-main{
+    margin: 2vh 0 2vh 0;
+}
