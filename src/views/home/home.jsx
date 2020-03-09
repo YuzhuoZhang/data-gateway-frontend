@@ -14,6 +14,7 @@ import FuncMenu from './components/sider/sider'
 import DataSourceMange from './components/main/dgm/dsm/dsm'
 import DataChanelMange from './components/main/dgm/dcm/dcm'
 import Start from './components/homepage'
+import DataTypeManage from './components/main/dgm/dtm/dtm'
 
 const { Content, Footer } = Layout
 /**
@@ -121,8 +122,8 @@ export default class Home extends React.Component {
                                 <Route path='/dgs/dss' component={}/> */}
                                 <Route path='/dgm/dsm' component={DataSourceMange}/>
                                 <Route path='/dgm/dcm' component={DataChanelMange}/>
-                                {/* <Route path='/dgm/dtm' component={}/>
-                                <Route path='/dgm/rcm' component={}/>
+                                <Route path='/dgm/dtm' component={DataTypeManage}/>
+                                {/* <Route path='/dgm/rcm' component={}/>
                                 <Route path='/asp/aspm' component={}/>
                                 <Route path='/asp/em' component={}/>
                                 <Route path='/asp/spm' component={}/>
@@ -135,7 +136,6 @@ export default class Home extends React.Component {
                     <Footer className='home-footer'>
                         底部
                     </Footer>
-
                 </Layout>
 
             </Layout>
