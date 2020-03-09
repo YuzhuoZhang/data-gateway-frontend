@@ -1,0 +1,9 @@
+.home-header{
+    display: flex;
+    align-items: center;
+    height: 8vh;
+    background-color: rebeccapurple;
+}
+.avator{
+    margin-left: auto;
+}
