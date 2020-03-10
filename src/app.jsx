@@ -2,7 +2,7 @@ import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 
 import Home from './views/home/home'
-import Welcome from './views/welcome/welcome'
+import Login from './views/welcome/welcome'
 /**
  * 基本页面的导航
  * 主页是 /
@@ -13,7 +13,7 @@ export default class App extends React.Component{
     render(){
         return (
             <Switch>
-                <Route path='/login' component={Welcome}/>
+                <Route path='/login' component={Login}/>
                 <Route path='/' component={Home}/>
                 <Redirect from='/*' to='/' />
             </Switch>

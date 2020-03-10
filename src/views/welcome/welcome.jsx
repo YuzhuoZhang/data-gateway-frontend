@@ -8,7 +8,7 @@ import './welcome.css'
  * app的登陆页
  * 登陆成功后记录下用户的id和用户名
  */
-export default class Welcome extends React.Component{
+export default class Login extends React.Component{
     render(){
         return(
             <div className='welcome'>
