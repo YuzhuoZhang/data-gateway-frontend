@@ -7,10 +7,8 @@ import MyTable from '../../table'
 
 const { Search } = Input
 const { Option } = Select
-/**
- * 数据源管理内容--新建数据源 查询数据源  删除数据源 共享数据源
- */
 
+//数据源表格数据
 const dataSource = [
     {
         'key': '1',
@@ -73,7 +71,7 @@ const dataSource = [
         'comment': '一些备注'
     }
 ]
-
+//数据源表格表头
 const columns = [
     {
         'title': '数据库名称',
@@ -117,23 +115,44 @@ const columns = [
         'key': 'comment'
     }
 ]
-
+//新增数据源的布局
 const layout = {
-    labelCol: { span: 8 },
+    labelCol: { span: 4 },
     wrapperCol: { span: 10 },
 }
-
+//对话框的默认状态，关闭新增对话框恢复默认状态
+const initialState = {
+    isTestAbled: false,
+    isAddAbled: false,
+    isShared: false  
+}
+/**
+ * 数据源管理内容--新建数据源 查询数据源  删除数据源 共享数据源
+ */
 export default class DataSourceMange extends React.Component {
 
+    /**
+     * 数据源管理组件的状态：
+     *      多选框选中的行号的主键
+     *      新建窗口的可见性
+     *          新建窗口的测试按钮的可用状态
+     *          新增按钮是否可用---测试连接通过再允许点新增
+     *      是否共享数据库
+     */
     state = {
         selectedRowKeys: [],
-        addModalVisable: false
+        addModalVisable: false,
+        isTestAbled: false,
+        isAddAbled: false,
+        isShared: false
     }
 
+    //传给table组件的回调函数
     onSelectChange = (selectedRowKeys) => {
         this.setState({ selectedRowKeys })
     }
 
+    //点击删除按钮的处理，用一个确认对话框
     deleteItems = () => {
         Modal.confirm({
             title: '确定要删除这' + this.state.selectedRowKeys.length + '条数据源吗',
@@ -145,28 +164,22 @@ export default class DataSourceMange extends React.Component {
             onOk: () => this.setState({ selectedRowKeys: [] })
         })
     }
-
+    //打开新增对话框
     openAddModal = () => {
         this.setState({ addModalVisable: true })
     }
 
-    handleCancel = () => {
-        this.setState({ addModalVisable: false })
-    }
-
-    handleFinsh = value => {
-        console.log(value)
-    }
-
+    //点击测试连接时候触发的函数
     testConnection = () => {
-
+        console.log(this.props.form)
     }
 
+    //添加数据源到数据库
     addDatasource = () => {
-
+        //console.log(form)
+        console.log(this.refs.addForm)
+        console.log(this.refs.addForm.getFieldsValue())
     }
-
-
 
     render() {
 
@@ -191,9 +204,10 @@ export default class DataSourceMange extends React.Component {
                         centered={true}
                         closable={false}
                         footer={null}
-                        destroyOnClose>
+                        destroyOnClose
+                        forceRender={true}>
                         {/* 对话框的表单 */}
-                        <Form {...layout}>
+                        <Form {...layout} ref='addForm'>
                             {/* 数据库类型的下拉框 */}
                             <Form.Item label='数据源类型' name='datasourceType'>
                                 <Select placeholder='请选择数据源' style={{ width: '150px' }}>
@@ -204,8 +218,8 @@ export default class DataSourceMange extends React.Component {
                                 </Select>
                             </Form.Item>
                             {/* 数据库服务器IP */}
-                            <Form.Item label='服务器IP:' name='serverIP'>
-                                <Input placeholder='数据库服务器IP' allowClear />
+                            <Form.Item label='服务器URL:' name='serverIP'>
+                                <Input placeholder='数据库服务器IP或域名' allowClear />
                             </Form.Item>
                             {/* 数据库用户名 */}
                             <Form.Item label='用户名' name='databaseUser'>
@@ -216,21 +230,27 @@ export default class DataSourceMange extends React.Component {
                                 <Input.Password placeholder='数据库密码' allowClear />
                             </Form.Item>
                             {/* 数据库端口号 */}
-                            <Form.Item label='端口号' name='databasePort' rules={[{ type: 'integer' }]}>
+                            <Form.Item label='端口号' name='databasePort' >
                                 <Input placeholder='数据库端口号' allowClear />
-                            </Form.Item>
-                            {/* 是否共享数据源 */}
-                            <Form.Item name='isShared'>
-                                <Checkbox>是否共享数据源</Checkbox>
                             </Form.Item>
                             {/* 数据库的描述信息，备注 */}
                             <Form.Item label='备注' name='comment'>
                                 <Input placeholder='数据库的描述信息' allowClear />
                             </Form.Item>
+                            {/* 是否共享数据源 */}
+                            <Form.Item name='isShared'>
+                                <Checkbox checked={this.state.isShared} onChange={event=>this.setState({isShared:event.target.checked})}>是否共享数据源</Checkbox>
+                            </Form.Item>
+                            {/* 测试连接按钮---需要用到表单除了注释和是否共享外的其他数据 */}
                             <Button onClick={this.testConnection}>测试连接</Button>
+                            {/* 测试连接的结果---想写成加载中  测试通过的对勾或者  连接失败这三种状态 */}
                             {this.state.connectMessage}
-                            <Button style={{float:'right'}} onClick={this.handleCancel}>取消</Button>
-                            <Button style={{float:'right'}} type='primary' onClick={this.addDatasource} htmlType='submit'>添加</Button>
+                            {/* 添加和取消按钮 */}
+                            <Button style={{ float: 'right' }} onClick={() => {
+                                this.setState({ addModalVisable: false })
+                                this.setState({...initialState})
+                            }}>取消</Button>
+                            <Button style={{ float: 'right' }} type='primary' onClick={this.addDatasource}>添加</Button>
                         </Form>
 
                     </Modal>
