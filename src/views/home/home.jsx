@@ -12,9 +12,11 @@ import './home.css'
 import HomeHeader from './components/header/header'
 import FuncMenu from './components/sider/sider'
 import DataSourceMange from './components/main/dgm/dsm/dsm'
-import DataChanelMange from './components/main/dgm/dcm/dcm'
+import DataChannelMange from './components/main/dgm/dcm/dcm'
 import Start from './components/homepage'
 import DataTypeManage from './components/main/dgm/dtm/dtm'
+import RowColMange from './components/main/dgm/rcm/rcm'
+import DataSourceSearch from './components/main/dgs/dss/dss'
 
 const { Content, Footer } = Layout
 /**
@@ -118,13 +120,13 @@ export default class Home extends React.Component {
                             {/* 主体部分的路由 */}
                             <Switch>
                                 <Route path='/home' component={Start}/>
-                                {/* <Route path='/dgs/is' component={}/>
-                                <Route path='/dgs/dss' component={}/> */}
+                                <Route path='/dgs/dss' component={DataSourceSearch}/>
+                                {/* <Route path='/dgs/is' component={}/> */}
                                 <Route path='/dgm/dsm' component={DataSourceMange}/>
-                                <Route path='/dgm/dcm' component={DataChanelMange}/>
+                                <Route path='/dgm/dcm' component={DataChannelMange}/>
                                 <Route path='/dgm/dtm' component={DataTypeManage}/>
-                                {/* <Route path='/dgm/rcm' component={}/>
-                                <Route path='/asp/aspm' component={}/>
+                                <Route path='/dgm/rcm' component={RowColMange}/>
+                                {/* <Route path='/asp/aspm' component={}/>
                                 <Route path='/asp/em' component={}/>
                                 <Route path='/asp/spm' component={}/>
                                 <Route path='/asp/asl' component={}/> */}
@@ -134,7 +136,7 @@ export default class Home extends React.Component {
                     </Content>
                     {/* 主体部分的底部 */}
                     <Footer className='home-footer'>
-                        底部
+                        Data Gateway
                     </Footer>
                 </Layout>
 

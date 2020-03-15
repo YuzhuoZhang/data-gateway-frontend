@@ -1,10 +1,10 @@
 import React from 'react'
 
-import './dcm.css'
+import './rcm.css'
 import { Button, Input } from 'antd'
 import MyTable from '../../table'
 
-// 数据转换通道管理的表格的栏目 们
+// 行列置换的表格的栏目 们
 const columns = [
     {
         'title': '数据通道名称',
@@ -41,21 +41,17 @@ const columns = [
     }
 ]
 
-export default class DataChannelMange extends React.Component{
+export default class RowColMange extends React.Component{
     render(){
         return (
-            // 数据转换通道管理
-            <div className='dcm'>
-                {/* 数据转换通道头部按钮 */}
-                <div className='dcm-header'>
-                    {/* 新增数据转换通道 */}
-                    {/* 删除数据转换通道 */}
-                    {/* 设置自动同步计划--定时执行 */}
+            <div className='rcm'>
+
+                <div className='rcm-header'>
+
                     {/* 搜索框 */}
                     <Input.Search enterButton placeholder='搜索方案名称'/>
                 </div>
-                {/* 数据转换通道主体表格部分 */}
-                <div className='dcm-main'>
+                <div className='rcm-main'>
                     <MyTable columns={columns}/>
                 </div>
             </div>

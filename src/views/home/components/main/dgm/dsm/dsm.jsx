@@ -81,12 +81,14 @@ const columns = [
     {
         'title': '数据库类型',
         'dataIndex': 'type',
-        'key': 'type'
+        'key': 'type',
+        'sorter': (a, b) => a.type - b.type
     },
     {
         'title': '注册时间',
         'dataIndex': 'createAt',
-        'key': 'createAt'
+        'key': 'createAt',
+        'sorter': (a, b) => a.createAt - b.createAt
     },
     {
         'title': '连接类型',
@@ -94,7 +96,8 @@ const columns = [
         'key': 'isRemote',
         render: value => (
             value ? <Tag color='green'>远程连接</Tag> : <Tag color='#990099'>本地连接</Tag>
-        )
+        ),
+        'sorter': (a, b) => a.isRemote - b.isRemote
     },
     {
         'title': '拥有者',
@@ -113,6 +116,14 @@ const columns = [
         'title': '备注',
         'dataIndex': 'comment',
         'key': 'comment'
+    },
+    {
+        'title': '操作',
+        'dataIndex': 'action',
+        'key': 'action',
+        render: row=>{
+            return <Button type='ghost'>编辑</Button>
+        }
     }
 ]
 //新增数据源的布局
@@ -124,7 +135,7 @@ const layout = {
 const initialState = {
     isTestAbled: false,
     isAddAbled: false,
-    isShared: false  
+    isShared: false
 }
 /**
  * 数据源管理内容--新建数据源 查询数据源  删除数据源 共享数据源
@@ -144,7 +155,9 @@ export default class DataSourceMange extends React.Component {
         addModalVisable: false,
         isTestAbled: false,
         isAddAbled: false,
-        isShared: false
+        isShared: false,
+        editModal: false,
+        row: null
     }
 
     //传给table组件的回调函数
@@ -208,6 +221,10 @@ export default class DataSourceMange extends React.Component {
                         forceRender={true}>
                         {/* 对话框的表单 */}
                         <Form {...layout} ref='addForm'>
+                            {/* 数据源名称 */}
+                            <Form.Item label='数据库名称' name='datasourceName'>
+                                <Input placeholder='数据库名称' allowClear/>
+                            </Form.Item>
                             {/* 数据库类型的下拉框 */}
                             <Form.Item label='数据源类型' name='datasourceType'>
                                 <Select placeholder='请选择数据源' style={{ width: '150px' }}>
@@ -239,7 +256,7 @@ export default class DataSourceMange extends React.Component {
                             </Form.Item>
                             {/* 是否共享数据源 */}
                             <Form.Item name='isShared'>
-                                <Checkbox checked={this.state.isShared} onChange={event=>this.setState({isShared:event.target.checked})}>是否共享数据源</Checkbox>
+                                <Checkbox checked={this.state.isShared} onChange={event => this.setState({ isShared: event.target.checked })}>是否共享数据源</Checkbox>
                             </Form.Item>
                             {/* 测试连接按钮---需要用到表单除了注释和是否共享外的其他数据 */}
                             <Button onClick={this.testConnection}>测试连接</Button>
@@ -248,7 +265,7 @@ export default class DataSourceMange extends React.Component {
                             {/* 添加和取消按钮 */}
                             <Button style={{ float: 'right' }} onClick={() => {
                                 this.setState({ addModalVisable: false })
-                                this.setState({...initialState})
+                                this.setState({ ...initialState })
                             }}>取消</Button>
                             <Button style={{ float: 'right' }} type='primary' onClick={this.addDatasource}>添加</Button>
                         </Form>

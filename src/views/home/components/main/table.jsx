@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes  from 'prop-types'
 import { Table } from 'antd'
 
 /**
@@ -30,4 +31,9 @@ export default class MyTable extends React.Component {
             />
         )
     }
+}
+
+MyTable.propTypes={
+    dataSource: PropTypes.array.isRequired,
+    columns: PropTypes.array.isRequired
 }

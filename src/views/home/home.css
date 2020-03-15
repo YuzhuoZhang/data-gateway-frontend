@@ -1,7 +1,7 @@
 
 .home-content{
-    margin: 2vh 2vh 2vh 2vh;
-    height: 82vh;
+    margin: 2vh 2vh 0 2vh;
+    height: 84vh;
 }
 .card{
     width: 100%;
@@ -9,5 +9,6 @@
 }
 .home-footer{
     height: 7vh;
-    background: linear-gradient(to right, #5f2c82, #49a09d);
+    background: none;
+    text-align: center;
 }

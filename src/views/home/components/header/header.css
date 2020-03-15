@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     height: 7vh;
-    background: linear-gradient(to right, #5f2c82, #49a09d);
+    background: linear-gradient(to left, #001529, #49a09d);
 }
 .avator{
     margin-left: auto;
