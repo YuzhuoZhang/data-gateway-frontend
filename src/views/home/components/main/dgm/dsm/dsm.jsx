@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Input, Button, Tag, Modal, Select, Form, Checkbox } from 'antd'
 import { PlusOutlined, DeleteOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 
@@ -12,71 +12,28 @@ const { Option } = Select
 const dataSource = [
     {
         'key': '1',
-        'name': 'mysql数据库',
+        'id':'1',
         'type': 'mysql',
-        'createAt': '2020-3-9',
         'owner': 'root',
-        'isRemote': true,
         'isShared': true,
         'comment': '一些备注'
     },
     {
         'key': '2',
-        'name': 'mysql数据库',
-        'type': 'mysql',
-        'createAt': '2020-3-9',
-        'owner': 'root',
-        'isRemote': true,
-        'isShared': true,
-        'comment': '一些备注'
-    },
-    {
-        'key': '3',
-        'name': 'mssql数据库',
-        'type': 'mssql',
-        'createAt': '2020-3-8',
-        'owner': 'admin',
-        'isRemote': false,
-        'isShared': false,
-        'comment': '一些备注'
-    },
-    {
-        'key': '4',
-        'name': 'oracle数据库',
+        'id':'2',
         'type': 'oracle',
-        'createAt': '2020-3-9',
-        'owner': 'admin',
-        'isRemote': true,
-        'isShared': false,
-        'comment': '一些备注'
-    },
-    {
-        'key': '5',
-        'name': 'sqlServer数据库',
-        'type': 'sqlServer',
-        'createAt': '2020-3-6',
-        'owner': 'admin',
-        'isRemote': false,
+        'owner': 'root',
         'isShared': true,
         'comment': '一些备注'
     },
-    {
-        'key': '6',
-        'name': 'mysql数据库',
-        'type': 'mysql',
-        'createAt': '2020-3-9',
-        'isRemote': true,
-        'owner': 'admin',
-        'isShared': true,
-        'comment': '一些备注'
-    }
+    
 ]
 //数据源表格表头
 const columns = [
     {
-        'title': '数据库名称',
-        'dataIndex': 'name',
-        'key': 'name'
+        'title': '编号',
+        'dataIndex': 'id',
+        'key': 'id'
     },
     {
         'title': '数据库类型',
@@ -84,21 +41,8 @@ const columns = [
         'key': 'type',
         'sorter': (a, b) => a.type - b.type
     },
-    {
-        'title': '注册时间',
-        'dataIndex': 'createAt',
-        'key': 'createAt',
-        'sorter': (a, b) => a.createAt - b.createAt
-    },
-    {
-        'title': '连接类型',
-        'dataIndex': 'isRemote',
-        'key': 'isRemote',
-        render: value => (
-            value ? <Tag color='green'>远程连接</Tag> : <Tag color='#990099'>本地连接</Tag>
-        ),
-        'sorter': (a, b) => a.isRemote - b.isRemote
-    },
+
+
     {
         'title': '拥有者',
         'dataIndex': 'owner',
@@ -122,7 +66,11 @@ const columns = [
         'dataIndex': 'action',
         'key': 'action',
         render: row=>{
-            return <Button type='ghost'>编辑</Button>
+            return (
+            <Fragment >
+                <Button type='ghost'>编辑</Button>
+                <Button type='ghost' style={{marginLeft:'2vw'}}>查看</Button>
+                </Fragment>)
         }
     }
 ]

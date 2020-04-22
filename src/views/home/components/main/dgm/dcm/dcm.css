@@ -1,0 +1,10 @@
+.dcm-header{
+    display: flex;
+    flex-flow: row nowrap;
+}
+.dcm-main{
+    margin: 2vh 0 2vh 0;
+}
+.dcm-header-search{
+    margin-left: 2vw;
+}

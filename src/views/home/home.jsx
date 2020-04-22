@@ -41,64 +41,41 @@ export default class Home extends React.Component {
   
         const menus = [
             {
-                'title': '网关查询',
+                'title': '数据源管理',
                 'url': '/dgs',
                 'icon': <FileSearchOutlined />,
                 'subMenu': [
                     {
-                        title: '索引查询',
-                        url: '/dgs/is'
+                        title: '查看数据源',
+                        url: '/dgs/dss'
                     },
                     {
-                        title: '数据源查询',
-                        url: '/dgs/dss'
+                        title: '修改数据源',
+                        url: '/dgm/dsm'
                     }
                 ]
             },
             {
-                'title': '网关管理',
+                'title': '数据通道管理',
                 'url': '/dgm',
                 'icon': <SettingOutlined />,
                 'subMenu': [
-                    {
-                        title: '数据源管理',
-                        url: '/dgm/dsm'
-                    },
+                    // {
+                    //     title: '数据通道',
+                    //     url: ''
+                    // },
                     {
                         title: '数据通道管理',
                         url: '/dgm/dcm'
                     },
                     {
-                        title: '数据类型转换维护',
+                        title: '定时执行任务',
                         url: '/dgm/dtm'
                     },
-                    {
-                        title: '行列置换预案维护',
-                        url: '/dgm/rcm'
-                    }
-                ]
-            },
-            {
-                'title': '自动服务计划',
-                'url': '/asp',
-                'icon': <EditOutlined />,
-                'subMenu': [
-                    {
-                        title: '自动服务参数维护',
-                        url: '/asp/aspm'
-                    },
-                    {
-                        title: '异常报警短信设置',
-                        url: '/asp/em'
-                    },
-                    {
-                        title: '服务计划管理',
-                        url: '/asp/spm'
-                    },
-                    {
-                        title: '自动服务时间日志',
-                        url: '/asp/log'
-                    }
+                    // {
+                    //     title: '行列置换预案维护',
+                    //     url: '/dgm/rcm'
+                    // }
                 ]
             }
         ]

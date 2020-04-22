@@ -30,9 +30,8 @@ function logout() {
 
 const userMenu = (
     <Menu>
-        <Item key='1'><Link to=''>上传头像</Link></Item>
-        <Item key='2'><Link to=''>修改密码</Link></Item>
-        <Item key='3'><Link to=''>设置用户</Link></Item>
+        <Item key='2'><Link to='/updatePwd'>修改密码</Link></Item>
+        <Item key='3'><Link to='settingUser'>设置用户</Link></Item>
         <Item key='4'><Link to='/login' onClick={logout}>退出登陆</Link></Item>
     </Menu>
 )
