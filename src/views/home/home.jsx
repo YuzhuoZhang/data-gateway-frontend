@@ -99,15 +99,10 @@ export default class Home extends React.Component {
                                 <Route path='/home' component={Start}/>
                                 <Route path='/updatePwd' component={}/>
                                 <Route path='/dgs/dss' component={DataSourceSearch}/>
-                                {/* <Route path='/dgs/is' component={}/> */}
                                 <Route path='/dgm/dsm' component={DataSourceMange}/>
                                 <Route path='/dgm/dcm' component={DataChannelMange}/>
                                 <Route path='/dgm/dtm' component={DataTypeManage}/>
                                 <Route path='/dgm/rcm' component={RowColMange}/>
-                                {/* <Route path='/asp/aspm' component={}/>
-                                <Route path='/asp/em' component={}/>
-                                <Route path='/asp/spm' component={}/>
-                                <Route path='/asp/asl' component={}/> */}
                                 <Redirect to='/home'/>
                             </Switch>
                         </Card>

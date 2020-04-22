@@ -28,11 +28,17 @@ function logout() {
     sessionStorage.removeItem('user_name')
 }
 
+const rootMenu = (
+    <Menu>
+        <Item key='1'><Link to='/updatePwd'>修改密码</Link></Item>
+        <Item key='2'><Link to='settingUser'>设置用户</Link></Item>
+        <Item key='3'><Link to='/login' onClick={logout}>退出登陆</Link></Item>
+    </Menu>
+)
 const userMenu = (
     <Menu>
-        <Item key='2'><Link to='/updatePwd'>修改密码</Link></Item>
-        <Item key='3'><Link to='settingUser'>设置用户</Link></Item>
-        <Item key='4'><Link to='/login' onClick={logout}>退出登陆</Link></Item>
+        <Item key='1'><Link to='/updatePwd'>修改密码</Link></Item>
+        <Item key='3'><Link to='/login' onClick={logout}>退出登陆</Link></Item>
     </Menu>
 )
 
@@ -64,8 +70,8 @@ export default class HomeHeader extends React.Component {
                     }
                 </Breadcrumb>
 
-                <Dropdown overlay={userMenu} placement='bottomCenter'>
-                    <Avatar className='avator' shape='square' size='large'>Root</Avatar>
+                <Dropdown overlay={sessionStorage.getItem('user_name')=='root'?rootMenu:userMenu} placement='bottomCenter'>
+                <Avatar className='avator' shape='square' size='large'>{sessionStorage.getItem('user_name')}</Avatar>
                 </Dropdown>
 
 
