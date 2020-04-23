@@ -97,7 +97,7 @@ export default class Home extends React.Component {
                             {/* 主体部分的路由 */}
                             <Switch>
                                 <Route path='/home' component={Start}/>
-                                <Route path='/updatePwd' component={}/>
+                                {/* <Route path='/updatePwd' component={}/> */}
                                 <Route path='/dgs/dss' component={DataSourceSearch}/>
                                 <Route path='/dgm/dsm' component={DataSourceMange}/>
                                 <Route path='/dgm/dcm' component={DataChannelMange}/>

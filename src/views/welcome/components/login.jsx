@@ -16,8 +16,8 @@ class LoginForm extends React.Component{
     console.log('接受的参数为:',values)
     // const response = await login(values.username,values.password)
     // console.log("返回结果为:",response)
-    sessionStorage.setItem('user_id','123456')
-    sessionStorage.setItem('user_name','root')
+    sessionStorage.setItem('user_id',values['password'])
+    sessionStorage.setItem('user_name',values['username'])
     this.props.history.replace('/')
     
   }

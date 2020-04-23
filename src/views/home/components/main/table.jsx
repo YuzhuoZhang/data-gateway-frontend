@@ -1,6 +1,7 @@
 import React from 'react'
-import PropTypes  from 'prop-types'
+import PropTypes from 'prop-types'
 import { Table } from 'antd'
+import ColumnGroup from 'antd/lib/table/ColumnGroup';
 
 /**
  * 定义一下自己的图表
@@ -28,12 +29,13 @@ export default class MyTable extends React.Component {
                 columns={columns}
                 rowSelection={this.state.rowSelection}
                 bordered
-            />
+            >
+            </Table>
         )
     }
 }
 
-MyTable.propTypes={
+MyTable.propTypes = {
     dataSource: PropTypes.array.isRequired,
     columns: PropTypes.array.isRequired
 }
