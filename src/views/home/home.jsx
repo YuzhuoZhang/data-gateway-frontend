@@ -3,20 +3,20 @@ import { Redirect, Switch, Route } from 'react-router-dom'
 import { Layout, Card } from 'antd'
 import {
     FileSearchOutlined,
-    SettingOutlined,
-    EditOutlined
+    SettingOutlined
 } from '@ant-design/icons'
 
 
 import './home.css'
 import HomeHeader from './components/header/header'
-import FuncMenu from './components/sider/sider'
+import Start from './components/homepage'
+import SideBar from './components/sider/sider'
+
+import {Datasource} from './components/main/datasource/datasource'
 import DataSourceMange from './components/main/dgm/dsm/dsm'
 import DataChannelMange from './components/main/dgm/dcm/dcm'
-import Start from './components/homepage'
-import DataTypeManage from './components/main/dgm/dtm/dtm'
+
 import RowColMange from './components/main/dgm/rcm/rcm'
-import DataSourceSearch from './components/main/dgs/dss/dss'
 
 const { Content, Footer } = Layout
 /**
@@ -25,11 +25,6 @@ const { Content, Footer } = Layout
  * 如果拿不到证明没有登陆，则直接跳转到登陆界面
  */
 export default class Home extends React.Component {
-
-
-    state={
-        url:''
-    }
 
     render() {
 
@@ -60,10 +55,6 @@ export default class Home extends React.Component {
                 'url': '/dc',
                 'icon': <SettingOutlined />,
                 'subMenu': [
-                    // {
-                    //     title: '数据通道',
-                    //     url: ''
-                    // },
                     {
                         title: '数据通道管理',
                         url: '/dc/dcm'
@@ -72,24 +63,18 @@ export default class Home extends React.Component {
                         title: '任务管理',
                         url: '/dc/task'
                     },
-                    // {
-                    //     title: '行列置换预案维护',
-                    //     url: '/dgm/rcm'
-                    // }
                 ]
             }
         ]
 
-        const {url} = this.state
-
         return (
             <Layout>
                 {/*sider 功能列表*/}
-                <FuncMenu menus={menus} />
+                <SideBar menus={menus} />
                 {/* 主体界面 */}
                 <Layout className='home-main'>
                     {/* 主体界面的头部 */}
-                    <HomeHeader url={url} />
+                    <HomeHeader />
                     {/* 主体界面的主体部分 */}
                     <Content className='home-content'>
                         {/* 用一张卡片承载主体部分 */}
@@ -97,7 +82,7 @@ export default class Home extends React.Component {
                             {/* 主体部分的路由 */}
                             <Switch>
                                 <Route path='/home' component={Start}/>
-                                <Route path='/ds/ds' component={DataSourceSearch}/>
+                                <Route path='/ds/ds' component={Datasource}/>
                                 <Route path='/ds/dsm' component={DataSourceMange}/>
                                 <Route path='/dc/dcm' component={DataChannelMange}/>
                                 <Route path='/dc/task' component={RowColMange}/>

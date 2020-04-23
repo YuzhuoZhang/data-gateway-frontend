@@ -6,7 +6,7 @@ const { Sider } = Layout
 const {SubMenu, Item} = Menu
 
 //功能菜单，通过接受功能列表对象，解析出一个多级的可以折叠的功能列表
-export default class FuncMenu extends React.Component {
+export default class SideBar extends React.Component {
 
     //sider的默认折叠效果
     state = {
