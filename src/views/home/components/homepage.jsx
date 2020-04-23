@@ -4,7 +4,7 @@ export default class Start extends React.Component{
     render() {
         return (
             <div>
-                起始页
+                欢迎使用本系统
             </div>
         )
     }

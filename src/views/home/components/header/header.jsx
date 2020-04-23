@@ -70,7 +70,7 @@ export default class HomeHeader extends React.Component {
                     }
                 </Breadcrumb>
 
-                <Dropdown overlay={sessionStorage.getItem('user_name')=='root'?rootMenu:userMenu} placement='bottomCenter'>
+                <Dropdown overlay={sessionStorage.getItem('user_name')==='root'?rootMenu:userMenu} placement='bottomCenter'>
                 <Avatar className='avator' shape='square' size='large'>{sessionStorage.getItem('user_name')}</Avatar>
                 </Dropdown>
 

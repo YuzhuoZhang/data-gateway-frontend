@@ -9,6 +9,11 @@ import { PlusOutlined, DeleteOutlined } from '@ant-design/icons'
 const columns = [
     {
         'title': '数据通道编号',
+        'dataIndex': 'id',
+        'key': 'id'
+    },
+    {
+        'title': '数据通道名称',
         'dataIndex': 'name',
         'key': 'name'
     },
@@ -18,14 +23,19 @@ const columns = [
         'key': 'input'
     },
     {
+        'title': '拥有者',
+        'dataIndex': 'owner_s',
+        'key': 'owner_s'
+    },
+    {
         'title': '输出数据源',
         'dataIndex': 'output',
         'key': 'output'
     },
     {
         'title': '拥有者',
-        'dataIndex': 'owner',
-        'key': 'owner'
+        'dataIndex': 'owner_t',
+        'key': 'owner_t'
     },
     {
         'title': '操作',

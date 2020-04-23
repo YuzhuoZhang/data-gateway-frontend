@@ -12,7 +12,7 @@ const { Option } = Select
 const dataSource = [
     {
         'key': '1',
-        'id':'1',
+        'id': '1',
         'type': 'mysql',
         'owner': 'root',
         'isShared': true,
@@ -20,13 +20,13 @@ const dataSource = [
     },
     {
         'key': '2',
-        'id':'2',
+        'id': '2',
         'type': 'oracle',
         'owner': 'root',
         'isShared': true,
         'comment': '一些备注'
     },
-    
+
 ]
 //数据源表格表头
 const columns = [
@@ -36,13 +36,21 @@ const columns = [
         'key': 'id'
     },
     {
+        'title': '数据源名称',
+        'dataIndex': 'name',
+        'key': 'name'
+    },
+    {
+        'title': '数据库名称',
+        'dataIndex': 'id',
+        'key': 'id'
+    },
+    {
         'title': '数据库类型',
         'dataIndex': 'type',
         'key': 'type',
         'sorter': (a, b) => a.type - b.type
     },
-
-
     {
         'title': '拥有者',
         'dataIndex': 'owner',
@@ -65,12 +73,13 @@ const columns = [
         'title': '操作',
         'dataIndex': 'action',
         'key': 'action',
-        render: row=>{
+        render: (_,record) => {
             return (
-            <Fragment >
-                <Button type='ghost'>编辑</Button>
-                <Button type='ghost' style={{marginLeft:'2vw'}}>查看</Button>
-                </Fragment>)
+                <Fragment>
+                    <Button type='ghost'>编辑</Button>
+                    <Button type='ghost' onClick={console.log(record)} style={{ marginLeft: '2vw' }}>查看</Button>
+                </Fragment >
+                )
         }
     }
 ]
@@ -171,7 +180,7 @@ export default class DataSourceMange extends React.Component {
                         <Form {...layout} ref='addForm'>
                             {/* 数据源名称 */}
                             <Form.Item label='数据库名称' name='datasourceName'>
-                                <Input placeholder='数据库名称' allowClear/>
+                                <Input placeholder='数据库名称' allowClear />
                             </Form.Item>
                             {/* 数据库类型的下拉框 */}
                             <Form.Item label='数据源类型' name='datasourceType'>

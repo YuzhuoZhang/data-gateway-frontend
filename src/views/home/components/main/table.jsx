@@ -28,9 +28,9 @@ export default class MyTable extends React.Component {
                 dataSource={dataSource}
                 columns={columns}
                 rowSelection={this.state.rowSelection}
+                pagination={{ position: ['topCenter','bottomCenter'] }}
                 bordered
-            >
-            </Table>
+            />
         )
     }
 }

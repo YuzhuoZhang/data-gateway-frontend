@@ -41,23 +41,23 @@ export default class Home extends React.Component {
   
         const menus = [
             {
-                'title': '数据源管理',
-                'url': '/dgs',
+                'title': '数据源',
+                'url': '/ds',
                 'icon': <FileSearchOutlined />,
                 'subMenu': [
                     {
                         title: '查看数据源',
-                        url: '/dgs/dss'
+                        url: '/ds/ds'
                     },
                     {
-                        title: '修改数据源',
-                        url: '/dgm/dsm'
+                        title: '数据源管理',
+                        url: '/ds/dsm'
                     }
                 ]
             },
             {
-                'title': '数据通道管理',
-                'url': '/dgm',
+                'title': '数据通道',
+                'url': '/dc',
                 'icon': <SettingOutlined />,
                 'subMenu': [
                     // {
@@ -66,11 +66,11 @@ export default class Home extends React.Component {
                     // },
                     {
                         title: '数据通道管理',
-                        url: '/dgm/dcm'
+                        url: '/dc/dcm'
                     },
                     {
-                        title: '定时执行任务',
-                        url: '/dgm/dtm'
+                        title: '任务管理',
+                        url: '/dc/task'
                     },
                     // {
                     //     title: '行列置换预案维护',
@@ -97,12 +97,10 @@ export default class Home extends React.Component {
                             {/* 主体部分的路由 */}
                             <Switch>
                                 <Route path='/home' component={Start}/>
-                                {/* <Route path='/updatePwd' component={}/> */}
-                                <Route path='/dgs/dss' component={DataSourceSearch}/>
-                                <Route path='/dgm/dsm' component={DataSourceMange}/>
-                                <Route path='/dgm/dcm' component={DataChannelMange}/>
-                                <Route path='/dgm/dtm' component={DataTypeManage}/>
-                                <Route path='/dgm/rcm' component={RowColMange}/>
+                                <Route path='/ds/ds' component={DataSourceSearch}/>
+                                <Route path='/ds/dsm' component={DataSourceMange}/>
+                                <Route path='/dc/dcm' component={DataChannelMange}/>
+                                <Route path='/dc/task' component={RowColMange}/>
                                 <Redirect to='/home'/>
                             </Switch>
                         </Card>
