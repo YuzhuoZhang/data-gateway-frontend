@@ -143,7 +143,11 @@ class Datasource extends React.Component {
 
                     {/* 右侧表格查看数据---嗨~可视化的方式查看数据库中数据咯 */}
                     <div className='dss-main-table'>
-                        <MyTable columns={columns} dataSource={dataSource} />
+                        <Table
+                            columns={columns}
+                            dataSource={dataSource}
+                            pagination={{ position: ['bottomCenter'] }}
+                            bordered />
                     </div>
 
                 </div>
