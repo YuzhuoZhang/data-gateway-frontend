@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 
 import './dcm.css'
-import { Button, Input } from 'antd'
+import { Button, Input, Modal, Form } from 'antd'
 import MyTable from '../../table'
 import { PlusOutlined, DeleteOutlined } from '@ant-design/icons'
 
@@ -23,19 +23,9 @@ const columns = [
         'key': 'input'
     },
     {
-        'title': '拥有者',
-        'dataIndex': 'owner_s',
-        'key': 'owner_s'
-    },
-    {
         'title': '输出数据源',
         'dataIndex': 'output',
         'key': 'output'
-    },
-    {
-        'title': '拥有者',
-        'dataIndex': 'owner_t',
-        'key': 'owner_t'
     },
     {
         'title': '操作',
@@ -52,12 +42,18 @@ const columns = [
 
 const data = [
     {
-        name:'1',
-        input:'1',
-        output:'2',
+        id:1,
+        name:'MySQL-Oracle',
+        input:'MySQL数据库',
+        output:'Oracle数据库',
         owner:'root',
     }
 ]
+
+const layout = {
+    labelCol: { span: 6 },
+    wrapperCol: { span: 12 },
+}
 
 export default class DataChannelMange extends React.Component{
 
@@ -65,12 +61,17 @@ export default class DataChannelMange extends React.Component{
         selectedRowKeys: [],
         isShared: false,
         editModal: false,
-        row: null
+        row: null,
+        addModalVisable: false,
     }
 
     //传给table组件的回调函数
     onSelectChange = (selectedRowKeys) => {
         this.setState({ selectedRowKeys })
+    }
+
+    openAddModal=()=>{
+        this.setState({ addModalVisable: true })
     }
 
     render(){
@@ -86,9 +87,51 @@ export default class DataChannelMange extends React.Component{
                     <Button
                         className='dsm-header-add'
                         type='primary'
-                        icon={<PlusOutlined />}>
+                        icon={<PlusOutlined />}
+                        onClick={this.openAddModal}>
                         新建数据转换通道
                     </Button>
+                    <Modal
+                        // title='添加数据源'
+                        visible={this.state.addModalVisable}
+                        centered={true}
+                        closable={false}
+                        footer={null}
+                        destroyOnClose
+                        forceRender={true}>
+                        {/* 对话框的表单 */}
+                        <Form {...layout} ref='addForm'>
+                            <Form.Item label='数据通道名称' name='name'>
+                                <Input placeholder='数据通道名称' allowClear />
+                            </Form.Item>
+                            <Form.Item label='源数据源编号' name='source_id'>
+                                <Input placeholder='源数据源编号' allowClear />
+                            </Form.Item>
+                            <Form.Item label='源数据源表名' name='source_table'>
+                                <Input placeholder='源数据源表名' allowClear />
+                            </Form.Item>
+                            <Form.Item label='源数据源列名' name='source_cols'>
+                                <Input placeholder='以逗号隔开：id,name,number' allowClear />
+                            </Form.Item>
+                            <Form.Item label='目标数据源编号' name='target_id'>
+                                <Input placeholder='目标数据源编号' allowClear />
+                            </Form.Item>
+                            <Form.Item label='目标据源表名' name='target_table'>
+                                <Input placeholder='目标据源表名' allowClear />
+                            </Form.Item>
+                            <Form.Item label='目标数据源列名' name='source_cols'>
+                                <Input placeholder='以逗号隔开：id,name,number' allowClear />
+                            </Form.Item>
+                            
+                            {/* 添加和取消按钮 */}
+                            
+                            <Button type='primary'>添加</Button>
+                            <Button style={{ marginLeft: '2vw' }} onClick={() => {
+                                this.setState({ addModalVisable: false })
+                            }}>取消</Button>
+                        </Form>
+
+                    </Modal>
                     {/* 删除数据转换通道 */}
                     <Button className='dsm-header-delete'
                         type='danger' disabled={!isDeleteAbled} icon={<DeleteOutlined />}

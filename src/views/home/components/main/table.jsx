@@ -1,34 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Table } from 'antd'
-import ColumnGroup from 'antd/lib/table/ColumnGroup';
 
 /**
  * 定义一下自己的图表
  */
 export default class MyTable extends React.Component {
 
-    state = {
-        rowSelection: {
-            onChange: (selectedRowKeys, selectedRows) => {
-                console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-                this.props.onSelectChange(selectedRowKeys)
-            }
-            // ,
-            // onSelect: (record, selected, selectedRows) => {
-            //     console.log(record, selected, selectedRows);
-            // }
-        }
-    }
-
     render() {
         const { dataSource, columns } = this.props
+
+        const rowSelection= {
+            selectedRowKeys:this.props.selectedRowKeys,
+            onChange: this.props.onSelectChange
+        }
         return (
             <Table
                 dataSource={dataSource}
                 columns={columns}
-                rowSelection={this.state.rowSelection}
-                pagination={{ position: ['topCenter','bottomCenter'] }}
+                rowSelection={rowSelection}
+                pagination={{ position: ['bottomCenter'] }}
                 bordered
             />
         )

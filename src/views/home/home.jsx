@@ -12,11 +12,11 @@ import HomeHeader from './components/header/header'
 import Start from './components/homepage'
 import SideBar from './components/sider/sider'
 
-import {Datasource} from './components/main/datasource/datasource'
+import { Datasource, DatasourceManagement } from './components/main/datasource/datasource'
 import DataSourceMange from './components/main/dgm/dsm/dsm'
 import DataChannelMange from './components/main/dgm/dcm/dcm'
-
-import RowColMange from './components/main/dgm/rcm/rcm'
+import { TaskMangement } from './components/main/datachanel/datachanel'
+import { AddAccount, UpdatePwd } from './components/main/setting/setting'
 
 const { Content, Footer } = Layout
 /**
@@ -30,10 +30,10 @@ export default class Home extends React.Component {
 
         let user_id = sessionStorage.getItem('user_id')
         let user_name = sessionStorage.getItem('user_name')
-        if(!(user_id&&user_name)){
-            return <Redirect to='/login'/>
+        if (!(user_id && user_name)) {
+            return <Redirect to='/login' />
         }
-  
+
         const menus = [
             {
                 'title': '数据源',
@@ -81,12 +81,14 @@ export default class Home extends React.Component {
                         <Card className='card' hoverable={false}>
                             {/* 主体部分的路由 */}
                             <Switch>
-                                <Route path='/home' component={Start}/>
-                                <Route path='/ds/ds' component={Datasource}/>
-                                <Route path='/ds/dsm' component={DataSourceMange}/>
-                                <Route path='/dc/dcm' component={DataChannelMange}/>
-                                <Route path='/dc/task' component={RowColMange}/>
-                                <Redirect to='/home'/>
+                                <Route path='/home' component={Start} />
+                                <Route path='/ds/ds' component={Datasource} />
+                                <Route path='/ds/dsm' component={DatasourceManagement} />
+                                <Route path='/dc/dcm' component={DataChannelMange} />
+                                <Route path='/dc/task' component={TaskMangement} />
+                                <Route path='/addAccount' component={AddAccount} />
+                                <Route path='/updatePwd' component={UpdatePwd} />
+                                <Redirect to='/home' />
                             </Switch>
                         </Card>
                     </Content>

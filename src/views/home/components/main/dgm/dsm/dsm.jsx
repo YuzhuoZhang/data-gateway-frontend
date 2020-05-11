@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Input, Button, Tag, Modal, Select, Form, Checkbox } from 'antd'
+import { Input, Button, Tag, Modal, Select, Form, Checkbox, Descriptions } from 'antd'
 import { PlusOutlined, DeleteOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 
 import './dsm.css'
@@ -13,18 +13,25 @@ const dataSource = [
     {
         'key': '1',
         'id': '1',
-        'type': 'mysql',
+        'name': 'MySQL数据库',
+        'type': 'MySQL',
         'owner': 'root',
         'isShared': true,
-        'comment': '一些备注'
+        'comment': '测试用mysql数据库',
+        ip: '127.0.0.1',
+        port: 3306,
+        dbName: 'store',
+        username: 'root',
+        password: '123456',
     },
     {
         'key': '2',
         'id': '2',
-        'type': 'oracle',
+        'name': 'Oracle数据库',
+        'type': 'Oracle',
         'owner': 'root',
-        'isShared': true,
-        'comment': '一些备注'
+        'isShared': false,
+        'comment': '测试用Oracle数据库'
     },
 
 ]
@@ -73,13 +80,13 @@ const columns = [
         'title': '操作',
         'dataIndex': 'action',
         'key': 'action',
-        render: (_,record) => {
+        render: (_, record) => {
             return (
                 <Fragment>
                     <Button type='ghost'>编辑</Button>
-                    <Button type='ghost' onClick={console.log(record)} style={{ marginLeft: '2vw' }}>查看</Button>
+                    <Button type='ghost' onClick={() => { console.log(record) }} style={{ marginLeft: '2vw' }}>查看</Button>
                 </Fragment >
-                )
+            )
         }
     }
 ]
@@ -179,8 +186,8 @@ export default class DataSourceMange extends React.Component {
                         {/* 对话框的表单 */}
                         <Form {...layout} ref='addForm'>
                             {/* 数据源名称 */}
-                            <Form.Item label='数据库名称' name='datasourceName'>
-                                <Input placeholder='数据库名称' allowClear />
+                            <Form.Item label='数据源名称' name='name'>
+                                <Input placeholder='数据源名称' allowClear />
                             </Form.Item>
                             {/* 数据库类型的下拉框 */}
                             <Form.Item label='数据源类型' name='datasourceType'>
@@ -194,6 +201,10 @@ export default class DataSourceMange extends React.Component {
                             {/* 数据库服务器IP */}
                             <Form.Item label='服务器URL:' name='serverIP'>
                                 <Input placeholder='数据库服务器IP或域名' allowClear />
+                            </Form.Item>
+                            {/* 数据源名称 */}
+                            <Form.Item label='数据库名称' name='DBName'>
+                                <Input placeholder='数据库名称' allowClear />
                             </Form.Item>
                             {/* 数据库用户名 */}
                             <Form.Item label='用户名' name='databaseUser'>
@@ -220,7 +231,7 @@ export default class DataSourceMange extends React.Component {
                             {/* 测试连接的结果---想写成加载中  测试通过的对勾或者  连接失败这三种状态 */}
                             {this.state.connectMessage}
                             {/* 添加和取消按钮 */}
-                            <Button style={{ float: 'right' }} onClick={() => {
+                            <Button style={{ float: 'right',marginLeft:'1vw' }} onClick={() => {
                                 this.setState({ addModalVisable: false })
                                 this.setState({ ...initialState })
                             }}>取消</Button>
@@ -243,6 +254,56 @@ export default class DataSourceMange extends React.Component {
                     <MyTable onSelectChange={this.onSelectChange} columns={columns} dataSource={dataSource} />
                 </div>
             </div>
+        )
+    }
+}
+
+class DataSourceDescription extends React.Component {
+    render() {
+
+        const record = this.props.record
+
+        return (
+            <Fragment>
+                <Descriptions>
+                    <Descriptions.Item label="编号" span={2}>
+                        {record.id}
+                    </Descriptions.Item>
+                    <Descriptions.Item label="数据源名称">
+                        {record.name}
+                    </Descriptions.Item>
+                    <Descriptions.Item label="数据库类型" span={4}>
+                        {record.type}
+                    </Descriptions.Item>
+                    <Descriptions.Item label="数据库服务器ip">
+                        {record.ip}
+                    </Descriptions.Item>
+                    <Descriptions.Item label="端口号">
+                        {record.port}
+                    </Descriptions.Item>
+                    <Descriptions.Item label="数据库名称">
+                        {record.dbName}
+                    </Descriptions.Item>
+                    <Descriptions.Item label="数据库用户名" span={2}>
+                        {record.username}
+                    </Descriptions.Item>
+                    <Descriptions.Item label="数据库密码">
+                        {record.password}
+                    </Descriptions.Item>
+                    <Descriptions.Item label="数据源拥有者">
+                        {record.owner}
+                    </Descriptions.Item>
+                    <Descriptions.Item label="是否共享">
+                        {record.isShared ? '是' : '否'}
+                    </Descriptions.Item>
+                    <Descriptions.Item label="注释">
+                        {record.comment}
+                    </Descriptions.Item>
+                </Descriptions>
+
+                <Button
+                    type='primary'>返回</Button>
+            </Fragment>
         )
     }
 }

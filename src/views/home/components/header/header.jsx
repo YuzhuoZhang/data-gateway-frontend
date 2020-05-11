@@ -16,7 +16,7 @@ function logout() {
 const rootMenu = (
     <Menu>
         <Item key='1'><Link to='/updatePwd'>修改密码</Link></Item>
-        <Item key='2'><Link to='settingUser'>设置用户</Link></Item>
+        <Item key='2'><Link to='/addAccount'>设置用户</Link></Item>
         <Item key='3'><Link to='/login' onClick={logout}>退出登陆</Link></Item>
     </Menu>
 )

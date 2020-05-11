@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {message} from 'antd'
+import qs from 'qs'
 
 export default function ajax(url, data={}, type='GET') {
 
@@ -8,7 +9,10 @@ export default function ajax(url, data={}, type='GET') {
     // 1. 执行异步ajax请求
     if(type==='GET') { // 发GET请求
       promise = axios.get(url, { // 配置对象
-        params: data // 指定请求参数
+        params: data,
+        paramsSerializer: params => {
+          return qs.stringify(params, { indices: false })
+        } // 指定请求参数
       })
     } else { // 发POST请求
       promise = axios.post(url, data)//指定请求的参数

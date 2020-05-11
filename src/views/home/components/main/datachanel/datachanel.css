@@ -1,0 +1,17 @@
+.task-header{
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.delete-task-button{
+    margin-left: 2vw;
+}
+
+.task-search{
+    width: 30%;
+    margin-left: auto;
+}
+
+.task-main{
+    margin-top: 2vh;
+}

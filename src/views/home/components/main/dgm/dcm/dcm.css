@@ -6,5 +6,6 @@
     margin: 2vh 0 2vh 0;
 }
 .dcm-header-search{
-    margin-left: 2vw;
+    width: 30%;
+    margin-left: auto;
 }
