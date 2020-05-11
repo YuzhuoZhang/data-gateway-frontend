@@ -29,7 +29,6 @@ import {
 } from 'react-router-dom'
 
 import './datasource.css'
-import MyTable from '../table'
 import { reqDataSourceList, reqAddDatasource, reqDatasourceDetail, reqDeleteDatasources } from '../../../../../api/apis'
 
 // 主体部分左侧属性列表的值
@@ -124,9 +123,9 @@ class Datasource extends React.Component {
                         }
                     </Select>
                     <Select placeholder='请选择数据库类型' ref='type' style={{ width: '200px', marginLeft: '2vw' }}>
-                        <Select.Option value='mysql'>MySQL</Select.Option>
-                        <Select.Option value='oracle'>Oracle</Select.Option>
-                        <Select.Option value='sqlserver'>SQL Server</Select.Option>
+                        <Select.Option value='MySQL'>MySQL</Select.Option>
+                        <Select.Option value='Oracle'>Oracle</Select.Option>
+                        <Select.Option value='SQL Server'>SQL Server</Select.Option>
                     </Select>
 
                     <Button type='primary' icon={<SearchOutlined />} style={{ marginLeft: '2vw' }} />

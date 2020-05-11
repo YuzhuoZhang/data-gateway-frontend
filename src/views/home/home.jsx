@@ -13,9 +13,8 @@ import Start from './components/homepage'
 import SideBar from './components/sider/sider'
 
 import { Datasource, DatasourceManagement } from './components/main/datasource/datasource'
-import DataSourceMange from './components/main/dgm/dsm/dsm'
-import DataChannelMange from './components/main/dgm/dcm/dcm'
-import { TaskMangement } from './components/main/datachanel/datachanel'
+import { DataChannelMange } from './components/main/datachanel/datachannel'
+import { TaskMangement } from './components/main/datachanel/datachannel'
 import { AddAccount, UpdatePwd } from './components/main/setting/setting'
 
 const { Content, Footer } = Layout
